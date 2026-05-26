@@ -4,35 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マイホームページ</title>
-    
     <style>
+        /* 全体の基本設定 */
         body {
-            font-family: sans-serif; /* 読みやすいゴシック体のフォントにする */
-            line-height: 1.6;        /* 行間を少し広げて読みやすくする */
-            color: #333333;          /* 文字の色をきつい真っ黒から優しい濃いグレーにする */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            
-            /* 画面の中央に中身を寄せる設定 */
+            padding: 0;
+            background-color: #f8f9fa; /* ほんのり明るい背景色 */
+            color: #333333;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 🚀 ヘッダー全体の帯（PC・スマホ両対応） */
+        header {
+            background-color: #2c3e50; /* カッコいいダークネイビー */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between; /* ロゴとメニューを両端に離す */
             align-items: center;
-            justify-content: center;
-            min-height: 80vh;        /* 画面の高さの中央付近に配置する */
+            flex-wrap: wrap; /* スマホで幅が足りない時は自動で折り返す */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* ヘッダーの中のロゴ（タイトル） */
+        .logo {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* ナビゲーションメニューの並び */
+        nav ul {
+            list-style: none; /* 点々を消す */
+            margin: 0;
+            padding: 0;
+            display: flex; /* メニューを横並びにする */
+            gap: 20px;     /* メニュー同士の間隔 */
+        }
+
+        /* メニューの文字デザイン */
+        nav ul li a {
+            color: #b4c6d8;
+            text-decoration: none; /* 下線を消す */
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s; /* マウスを乗せたときフワッと色を変える */
+        }
+
+        /* マウスが乗ったときの色（CEPパネルのアクティブ状態風） */
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+
+        /* メインコンテンツを囲む枠 */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 60px auto; /* 上下に余白を作って中央に寄せる */
+            padding: 0 20px;
+            box-sizing: border-box;
             text-align: center;
         }
 
-        /* 横幅が大きすぎるPCで見ても、読みやすい幅（最大600px）に制限する */
-        .container {
-            max-width: 600px;
-            width: 100%;
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666666;
+        }
+
+        /* スマホ表示のときの微調整 */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column; /* スマホ時はロゴとメニューを縦並びに */
+                gap: 10px;
+                padding: 15px;
+            }
+            nav ul {
+                gap: 15px; /* メニューの間隔をスマホ用に少し詰める */
+            }
+            nav ul li a {
+                font-size: 0.85rem; /* スマホ用に文字を少し最適化 */
+            }
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="logo">My Homepage</div>
+        <nav>
+            <ul>
+                <li><a href="#profile">プロフィール</a></li>
+                <li><a href="#works">実績</a></li>
+                <li><a href="#sample">サンプル</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="container">
         <h1>Hello World!</h1>
         <p>私のホームページへようこそ！</p>
     </div>
+
 </body>
 </html>
