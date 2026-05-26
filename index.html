@@ -2,10 +2,37 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マイホームページ</title>
+    
+    <style>
+        body {
+            font-family: sans-serif; /* 読みやすいゴシック体のフォントにする */
+            line-height: 1.6;        /* 行間を少し広げて読みやすくする */
+            color: #333333;          /* 文字の色をきつい真っ黒から優しい濃いグレーにする */
+            margin: 0;
+            padding: 20px;
+            
+            /* 画面の中央に中身を寄せる設定 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;        /* 画面の高さの中央付近に配置する */
+            text-align: center;
+        }
+
+        /* 横幅が大きすぎるPCで見ても、読みやすい幅（最大600px）に制限する */
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>私のホームページへようこそ！</p>
+    <div class="container">
+        <h1>Hello World!</h1>
+        <p>私のホームページへようこそ！</p>
+    </div>
 </body>
 </html>
