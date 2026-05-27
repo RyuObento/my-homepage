@@ -5,64 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マイホームページ</title>
     <style>
-        /* 全体の基本設定 */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa; /* ほんのり明るい背景色 */
+            background-color: #f8f9fa;
             color: #333333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* 🚀 ヘッダー全体の帯（PC・スマホ両対応） */
         header {
-            background-color: #2c3e50; /* カッコいいダークネイビー */
+            background-color: #2c3e50;
             padding: 15px 30px;
             display: flex;
-            justify-content: space-between; /* ロゴとメニューを両端に離す */
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* スマホで幅が足りない時は自動で折り返す */
+            flex-wrap: wrap;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ヘッダーの中のロゴ（タイトル） */
         .logo {
             color: #ffffff;
             font-size: 1.2rem;
             font-weight: bold;
         }
 
-        /* ナビゲーションメニューの並び */
         nav ul {
-            list-style: none; /* 点々を消す */
+            list-style: none;
             margin: 0;
             padding: 0;
-            display: flex; /* メニューを横並びにする */
-            gap: 20px;     /* メニュー同士の間隔 */
+            display: flex;
+            gap: 20px;
         }
 
-        /* メニューの文字デザイン */
         nav ul li a {
             color: #b4c6d8;
-            text-decoration: none; /* 下線を消す */
+            text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.2s; /* マウスを乗せたときフワッと色を変える */
+            transition: color 0.2s;
         }
 
-        /* マウスが乗ったときの色（CEPパネルのアクティブ状態風） */
         nav ul li a:hover {
             color: #ffffff;
         }
 
-        /* メインコンテンツを囲む枠 */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            margin: 60px auto; /* 上下に余白を作って中央に寄せる */
+            margin: 60px auto 40px;
             padding: 0 20px;
             box-sizing: border-box;
             text-align: center;
@@ -71,7 +64,7 @@
         h1 {
             font-size: 2.5rem;
             color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         p {
@@ -79,18 +72,144 @@
             color: #666666;
         }
 
-        /* スマホ表示のときの微調整 */
+        /* バナーギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        /* スマホは1列 */
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* よくあるご質問 */
+        .faq-section {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .faq-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #2c3e50;
+            border-radius: 2px;
+        }
+
+        .faq-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: #f0f4f8;
+        }
+
+        .faq-question::before {
+            content: 'Q.';
+            color: #2c3e50;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .faq-question span.text {
+            flex: 1;
+        }
+
+        .faq-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+            padding: 0 20px 0 46px;
+            font-size: 0.95rem;
+            color: #555555;
+            line-height: 1.8;
+            background-color: #fafafa;
+            border-top: 0px solid #e0e0e0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 16px 20px 18px 46px;
+            border-top: 1px solid #e0e0e0;
+        }
+
         @media (max-width: 600px) {
             header {
-                flex-direction: column; /* スマホ時はロゴとメニューを縦並びに */
+                flex-direction: column;
                 gap: 10px;
                 padding: 15px;
             }
             nav ul {
-                gap: 15px; /* メニューの間隔をスマホ用に少し詰める */
+                gap: 15px;
             }
             nav ul li a {
-                font-size: 0.85rem; /* スマホ用に文字を少し最適化 */
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -98,7 +217,9 @@
 <body>
 
     <header>
-        <div class="logo">My Homepage</div>
+        <div class="logo">
+            <a href="#"><img src="images/竜おべんとうロゴ.png" alt="ロゴ" height="60"></a>
+        </div>
         <nav>
             <ul>
                 <li><a href="#profile">プロフィール</a></li>
@@ -111,8 +232,79 @@
 
     <div class="container">
         <h1>Hello World!</h1>
-        <p>私のホームページへようこそ！</p>
+        <div class="gallery">
+            <img src="images/3D背景.jpeg" alt="3D背景">
+            <img src="images/musicビデオ.jpeg" alt="Music Video">
+            <img src="images/チャンネルOPED.jpeg" alt="チャンネルOP/ED">
+            <img src="images/ロゴアニメーション.jpeg" alt="ロゴアニメーション">
+        </div>
     </div>
 
+    <!-- よくあるご質問 -->
+    <section class="faq-section">
+        <h2>よくあるご質問</h2>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="text">どんな動画を制作できますか？</span>
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                YouTube動画・ショート動画・MV・ゲーム実況の編集など、エンタメ系の動画制作全般に対応しています。まずはお気軽にご相談ください。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="text">納期はどのくらいかかりますか？</span>
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                内容によって異なりますが、通常の動画編集であれば3〜5営業日が目安です。急ぎの案件もご相談ください。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="text">料金はどのくらいですか？</span>
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                動画の尺・内容・クオリティによって異なります。まずは無料でお見積もりをお出しするので、お気軽にお問い合わせください。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="text">修正は何回まで対応していただけますか？</span>
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                基本的に2回まで無料で修正対応しています。それ以上の修正については別途ご相談させていただきます。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="text">どうやって依頼すればいいですか？</span>
+                <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+                お問い合わせフォームまたはSNSのDMからご連絡ください。内容をヒアリングした上で、お見積もりをご提示します。
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
 </body>
 </html>
